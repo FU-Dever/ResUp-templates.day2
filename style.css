@@ -1,0 +1,257 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+html{
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+#wrap-progress{  
+    width: 300px;
+    height: 150px;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 5px;
+}
+#wrap-progress input {
+    margin: 20px;
+}
+#wrap-progress input:nth-child(1)::after,
+#wrap-progress input:nth-child(2)::after,
+#wrap-progress input:nth-child(3)::after,
+#wrap-progress input:nth-child(4)::after
+{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 5px solid rgb(81, 81, 231);
+    background-color: #fff;
+    border-radius: 50%;
+    line-height: 20px;
+    text-align: center;
+    color: rgb(81, 81, 231);
+    top: 50%;
+}
+
+#wrap-progress #step1::after{
+    left: 60px;
+    transform: translateY(-50%);
+}
+#wrap-progress #step2::after{
+    left: 110px;
+    transform: translateY(-50%);
+}
+#wrap-progress #step3::after{
+    left: 160px;
+    transform: translateY(-50%);
+}
+#wrap-progress #step4::after{
+    left: 210px;
+    transform: translateY(-50%);
+}
+
+#step4:checked ~ #step1::after,
+#step4:checked ~ #step3::after,
+#step4:checked ~ #step2::after{
+    background-color: rgb(81, 81, 231);
+    transform: translate(0px, -50%);
+    color: #fff;
+}
+
+#step3:checked ~ #step1::after,
+#step3:checked ~ #step2::after{
+    background-color: rgb(81, 81, 231);
+    color: #fff;
+}
+
+#step2:checked ~ #step1::after{
+    background-color: rgb(81, 81, 231);
+    color: #fff;
+}
+
+#step1:checked::after,
+#step2:checked::after,
+#step3:checked::after,
+#step4:checked::after{
+    background-color: rgb(81, 81, 231) !important;
+    color: #fff !important;
+}
+
+#wrap-progress #step1::after{
+    content: '1';
+}
+#wrap-progress #step2::after{
+    content: '2';
+}
+#wrap-progress #step3::after{
+    content: '3';
+}
+#wrap-progress #step4::after{
+    content: '4';
+}
+.prev-btn,
+.next-btn{
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: rgb(81, 81, 231);
+    color: #fff;
+    margin: 10px;
+    cursor: pointer;
+}
+
+#progress-bar{
+    height: 5px;
+    background-color: rgb(81, 81, 231);
+    width: 0px;
+    position: absolute;
+    top: 50%;
+    left: 65px;
+    transform: translate(0px, -50%);
+    transition: .2s ease-in-out;
+    z-index: -1;
+}
+
+#step2:checked ~ #progress-bar{
+    width: 50px;
+}
+#step3:checked ~ #progress-bar{
+    width: 100px;
+}
+#step4:checked ~ #progress-bar{
+    width: 150px;
+}
+
+#step1-label,
+#step2-label,
+#step3-label,
+#step4-label{
+    position: absolute;
+    bottom: 0px;
+}
+
+#step1-label .label-btns,
+#step2-label .label-btns,
+#step3-label .label-btns,
+#step4-label .label-btns{
+    display: flex;
+}
+
+
+
+
+#step1:checked ~ #step1-label .prev-btn{
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+#step1:checked ~ #step1-label .next-btn{
+    z-index: -1;
+}
+#step1:checked ~ #step3-label,
+#step1:checked ~ #step4-label
+{
+    display: none;
+}
+#step1:checked ~ #step2-label .prev-btn{
+    z-index: -1;
+    background-color: #fff;
+}
+
+
+
+#step2:checked ~ #step2-label,
+#step2:checked ~ #step4-label{
+    display: none;
+}
+#step2:checked ~ #step1-label .next-btn{
+    z-index: -1;
+    background-color: #fff;
+}
+#step2:checked ~ #step1-label .prev-btn{
+    z-index: 1;
+    background-color: rgb(81, 81, 231);
+}
+#step2:checked ~ #step3-label .next-btn{
+    z-index: 1;
+    background-color: rgb(81, 81, 231);
+}
+#step2:checked ~ #step3-label .prev-btn{
+    z-index: -1;
+    background-color: #fff;
+}
+
+
+
+
+#step3:checked ~ #step1-label,
+#step3:checked ~ #step3-label{
+    display: none;
+}
+#step3:checked ~ #step2-label .prev-btn{
+    z-index: 1;
+    background-color: rgb(81, 81, 231);
+}
+#step3:checked ~ #step2-label .next-btn{
+    z-index: -1;
+    background-color: #fff;
+}
+#step3:checked ~ #step4-label .next-btn{
+    z-index: 1;
+    background-color: rgb(81, 81, 231);
+}
+#step3:checked ~ #step4-label .prev-btn{
+    z-index: -1;
+    background-color: #fff;
+}
+
+
+
+
+#step4:checked ~ #step1-label,
+#step4:checked ~ #step2-label{
+    display: none;
+}
+#step4:checked ~ #step3-label .prev-btn{
+    z-index: 1;
+    background-color: rgb(81, 81, 231);
+}
+#step4:checked ~ #step3-label .next-btn{
+    z-index: -1;
+    background-color: #fff;
+}
+#step4:checked ~ #step4-label .next-btn{
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+#step4:checked ~ #step4-label .prev-btn{
+    z-index: -1;
+    background-color: #fff;
+}
+
+/* #wrap-progress #step1 {
+    position: absolute;
+    left: calc( 100% - 100px );
+}
+
+#wrap-progress #step2 {
+    position: absolute;
+    left: calc( 100% - 150px );
+}
+
+#wrap-progress #step3 {
+    position: absolute;
+    left: calc( 100% - 200px );
+}
+
+#wrap-progress #step4 {
+    position: absolute;
+    left: calc( 100% - 250px );
+} */
